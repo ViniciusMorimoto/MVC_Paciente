@@ -1,12 +1,13 @@
-﻿using System;
+﻿using MVC_Paciente;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MVC_Paciente;
 
 namespace MVC_Paciente.Controllers
 {
@@ -48,6 +49,21 @@ namespace MVC_Paciente.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID_Paciente,Nome,Idade,DataNasc,Genero,Doencas,Alergias,Telefone,Contato,Logradouro,Cidade,Estado")] Paciente paciente)
         {
+            string dataNascRaw = Request.Form["DataNasc"];
+
+            if (!string.IsNullOrEmpty(dataNascRaw))
+            {
+                try
+                {
+                    paciente.DataNasc = DateTime.ParseExact(dataNascRaw, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+                    ModelState.Remove("DataNasc");
+                }
+                catch (FormatException)
+                {
+                    ModelState.AddModelError("DataNasc", "Insira uma data válida no formato DD/MM/AAAA.");
+                }
+            }
             if (ModelState.IsValid)
             {
                 db.Paciente.Add(paciente);
@@ -80,12 +96,28 @@ namespace MVC_Paciente.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID_Paciente,Nome,Idade,DataNasc,Genero,Doencas,Alergias,Telefone,Contato,Logradouro,Cidade,Estado")] Paciente paciente)
         {
+            string dataNascRaw = Request.Form["DataNasc"];
+
+            if (!string.IsNullOrEmpty(dataNascRaw))
+            {
+                try
+                {
+                    paciente.DataNasc = DateTime.ParseExact(dataNascRaw, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    ModelState.Remove("DataNasc");
+                }
+                catch (FormatException)
+                {
+                    ModelState.AddModelError("DataNasc", "Insira uma data válida no formato DD/MM/AAAA.");
+                }
+            }
+
             if (ModelState.IsValid)
             {
-                db.Entry(paciente).State = EntityState.Modified;
+                db.Entry(paciente).State = System.Data.Entity.EntityState.Modified; 
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(paciente);
         }
 

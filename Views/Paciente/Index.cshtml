@@ -56,7 +56,7 @@
             @Html.DisplayFor(modelItem => item.Idade)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DataNasc)
+            @(item.DataNasc != null ? Convert.ToDateTime(item.DataNasc).ToString("dd/MM/yyyy") : "")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Genero)

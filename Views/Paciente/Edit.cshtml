@@ -6,11 +6,10 @@
 
 <h2>Edit</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Paciente</h4>
         <hr />
@@ -20,7 +19,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", maxlength = "200" } })
                 @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Idade, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Idade, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Idade, new { htmlAttributes = new { @class = "form-control", type = "number", min = "0", max = "150" } })
                 @Html.ValidationMessageFor(model => model.Idade, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DataNasc, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DataNasc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.DataNasc, "{0:dd/MM/yyyy}", new { @class = "form-control", id = "txtDataNasc", placeholder = "DD/MM/AAAA" })
                 @Html.ValidationMessageFor(model => model.DataNasc, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -44,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Genero, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Genero, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Genero, new { htmlAttributes = new { @class = "form-control", id = "txtGenero", placeholder = "M / F", maxlength = "1" } })
                 @Html.ValidationMessageFor(model => model.Genero, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -52,7 +51,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Doencas, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Doencas, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Doencas, new { htmlAttributes = new { @class = "form-control", maxlength = "200" } })
                 @Html.ValidationMessageFor(model => model.Doencas, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -60,7 +59,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Alergias, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Alergias, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Alergias, new { htmlAttributes = new { @class = "form-control", maxlength = "200" } })
                 @Html.ValidationMessageFor(model => model.Alergias, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -68,7 +67,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control", id = "txtTelefone" } })
                 @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -76,7 +75,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Contato, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Contato, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Contato, new { htmlAttributes = new { @class = "form-control", id = "txtContato" } })
                 @Html.ValidationMessageFor(model => model.Contato, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -84,7 +83,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Logradouro, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Logradouro, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Logradouro, new { htmlAttributes = new { @class = "form-control", maxlength = "200" } })
                 @Html.ValidationMessageFor(model => model.Logradouro, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -92,7 +91,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Cidade, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @class = "form-control", maxlength = "100" } })
                 @Html.ValidationMessageFor(model => model.Cidade, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -100,7 +99,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control", id = "txtEstado", placeholder = "EX: SP" } })
                 @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -119,4 +118,44 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.validator.methods.date = function (value, element) {
+                return this.optional(element) || /^\d\d?\/\d\d?\/\d\d\d\d$/.test(value);
+            };
+
+            $('#txtDataNasc').mask('00/00/0000');
+
+            $('#txtGenero').mask('S', {
+                translation: {
+                    'S': { pattern: /[a-zA-Z]/, optional: false }
+                }
+            }).on('input', function() {
+                this.value = this.value.toUpperCase();
+            });
+
+            $('#txtEstado').mask('SS', {
+                translation: {
+                    'SS': { pattern: /[a-zA-Z]/, optional: false }
+                }
+            }).on('input', function() {
+                this.value = this.value.toUpperCase();
+            });
+
+            var maskBehavior = function (val) {
+                return val.replace(/\D/g, '').length === 11 ? '(00)00000-0000' : '(00)0000-00009';
+            },
+            options = {
+                onKeyPress: function(val, e, field, options) {
+                    field.mask(maskBehavior.apply({}, arguments), options);
+                }
+            };
+
+            $('#txtTelefone').mask(maskBehavior, options);
+            $('#txtContato').mask(maskBehavior, options);
+        });
+    </script>
 }
